@@ -17,6 +17,15 @@ export class AuthService {
 
   isAuthenticated(): boolean {
     const token = localStorage.getItem('access_token');
-    return !this.jwtHelper.isTokenExpired(token);
+    return token ? !this.jwtHelper.isTokenExpired(token) : false;
+  }
+
+  getUsername(): string | null {
+    const token = localStorage.getItem('access_token');
+    if (token) {
+      const decodedToken = this.jwtHelper.decodeToken(token);
+      return decodedToken?.username || null;  // Assurez-vous que votre token contient un champ "username"
+    }
+    return null;
   }
 }

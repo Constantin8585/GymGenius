@@ -1,23 +1,22 @@
 import { Component } from '@angular/core';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
-import { ClientComponent } from '../client/client.component';
-import { OffreComponent } from '../offre/offre.component';
-import { AccueilComponent } from '../accueil/accueil.component';
+import { AuthService } from '../services/auth.service';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+  // Importez le service d'authentification
 
 @Component({
   selector: 'app-dashboard',
+  imports: [CommonModule, FormsModule, RouterModule],  // Ajoutez le service d'authentification dans le tableau des imports
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css'],
-  standalone: true,
-  imports: [ RouterModule, CommonModule]
-
+  styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent {
   isSidebarOpen = false;
-  activePage: string = ''; // Page active par défaut
-  
-  constructor(private router:Router){}
+  activePage: string = '';
+  username: string | null = '';  // Propriété pour stocker le nom d'utilisateur
+
+  constructor(private router: Router, private authService: AuthService) { }
 
   ngOnInit() {
     this.router.events.subscribe(event => {
@@ -25,6 +24,9 @@ export class DashboardComponent {
         this.activePage = event.urlAfterRedirects;
       }
     });
+
+    // Récupérez le nom d'utilisateur après l'authentification
+    this.username = this.authService.getUsername();
   }
 
   toggleSidebar() {
