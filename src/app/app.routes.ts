@@ -7,6 +7,7 @@ import { OffreComponent } from './offre/offre.component';
 import { GestionOffresComponent } from './gestion-offres/gestion-offres.component';
 import { StatsComponent } from './stats/stats.component';
 import { GestionClientsComponent } from './gestion-clients/gestion-clients.component';
+import { SubscriptionComponent } from './subscription/subscription.component';
 
 
 export const routes: Routes = [
@@ -26,6 +27,7 @@ export const routes: Routes = [
         { path: 'accueil', component: AccueilComponent },
         { path: 'client', component: ClientComponent },
         { path: 'offre', component: OffreComponent },
+        { path: 'souscription', component: SubscriptionComponent },
         { path: 'gestion-clients', component: GestionClientsComponent },
         { path: 'gestion-offres', component: GestionOffresComponent },
         { path: 'stats', component: StatsComponent }
