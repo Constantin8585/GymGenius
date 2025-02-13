@@ -79,4 +79,5 @@ export class  GestionOffresComponent implements OnInit {
       pack.description.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
   }
+  
 }

@@ -8,14 +8,18 @@ h2 {
   margin-bottom: 20px;
 }
 
-.search-container {
+.search-bar {
   margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
 }
 
-.search-container input {
-  width: 100%;
-  padding: 8px;
-  box-sizing: border-box;
+.search-bar input {
+  width: 300px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
 }
 
 .packs-list-wrapper {

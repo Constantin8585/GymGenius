@@ -1,6 +1,14 @@
 <div class="packs-container">
   <h2>Liste des Offres</h2>
 
+  <div class="search-bar">
+    <input
+      type="text"
+      [(ngModel)]="searchTerm"
+      placeholder="Rechercher un client..."
+      (input)="applyFilter()"
+    />
+  </div>
 <div class="packs-list-wrapper">
   <div class="packs-list">
     <div class="pack-card" *ngFor="let pack of filteredPacks">

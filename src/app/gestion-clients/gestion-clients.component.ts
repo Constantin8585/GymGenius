@@ -11,19 +11,24 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./gestion-clients.component.css']
 })
 export class GestionClientsComponent implements OnInit {
+  searchTerm: string = '';
+  filteredClients: Customer[] = [];
   clients: Customer[] = [];
   isModalOpen = false;
   newCustomer: Customer = { lastName: '', firstName: '', phoneNumber: '', registrationDate: '' };
 
   constructor(private customerService: CustomerService) {}
 
+  
+
   ngOnInit() {
     this.loadCustomers();
   }
 
   loadCustomers() {
-    this.customerService.getCustomers().subscribe(customers => {
+    this.customerService.getCustomers().subscribe((customers) => {
       this.clients = customers;
+      this.filteredClients = [...this.clients]; 
     });
   }
 
@@ -39,6 +44,15 @@ export class GestionClientsComponent implements OnInit {
   closeModal() {
     this.isModalOpen = false;
   }
+
+  applyFilter() {
+    this.filteredClients = this.clients.filter(client =>
+      (client.lastName + client.firstName + client.phoneNumber)
+        .toLowerCase()
+        .includes(this.searchTerm.toLowerCase())
+    );
+  }
+  
 
   onSubmit() {
     if (this.newCustomer.id) {

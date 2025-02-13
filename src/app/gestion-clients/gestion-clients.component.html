@@ -1,8 +1,17 @@
 <div class="clients-container">
   <h2>Gestion des Clients</h2>
-  <button (click)="openModal()">
-    <i class="fas fa-plus"></i> Ajouter un Client
-  </button>
+
+  <div class="actions-bar">
+    <button (click)="openModal()">
+      <i class="fas fa-plus"></i> Ajouter un Client
+    </button>
+    <input
+      type="text"
+      placeholder="Rechercher un client"
+      [(ngModel)]="searchTerm"
+      (input)="applyFilter()"
+    />
+  </div>
 
   <div class="customers-list-wrapper">
     <table>
@@ -17,7 +26,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let client of clients">
+        <tr *ngFor="let client of filteredClients">
           <td>{{client.id}}</td>
           <td>{{client.lastName}}</td>
           <td>{{client.firstName}}</td>

@@ -1,6 +1,16 @@
 <div class="clients-container">
   <h2>Liste des Clients</h2>
 
+  <!-- Barre de recherche -->
+  <div class="search-bar">
+    <input
+      type="text"
+      [(ngModel)]="searchTerm"
+      placeholder="Rechercher un client..."
+      (input)="applyFilter()"
+    />
+  </div>
+
   <div class="clients-list-wrapper">
     <div class="clients-list">
       <div class="client-card" *ngFor="let client of filteredClients">
@@ -21,4 +31,3 @@
     </div>
   </div>
 </div>
-

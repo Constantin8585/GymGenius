@@ -1,8 +1,15 @@
 <div class="subscriptions-container">
   <h2>Gestion des Souscriptions</h2>
-  <button (click)="openModal()">
-    <i class="fas fa-plus"></i> Ajouter une Souscription
-  </button>
+  <div class="subscriptions-header">
+    <button (click)="openModal()">
+      <i class="fas fa-plus"></i> Ajouter une Souscription
+    </button>
+  
+    <div class="search-container">
+      <input type="text" [(ngModel)]="searchTerm" placeholder="Rechercher..." (input)="applyFilter()" />
+    </div>
+  </div>
+  
 
   <div class="subscriptions-list-wrapper">
     <div class="subscriptions-list">

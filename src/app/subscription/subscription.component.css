@@ -26,8 +26,15 @@ button:hover {
   background-color: #45a049;
 }
 
-.search-container {
+.subscriptions-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 20px;
+}
+
+.search-container {
+  width: 50%;
 }
 
 .search-container input {

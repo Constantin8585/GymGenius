@@ -1,1 +1,30 @@
-<p>accueil works!</p>
+<div class="dashboard-container">
+    <h1>Bienvenue dans le Système de Gestion</h1>
+  
+    <!-- Statistiques Section -->
+    <div class="stats-section">
+      <div class="stat-card">
+        <h2>Total Clients</h2>
+        <p>{{ stats?.customers.length || 0 }}</p>
+      </div>
+      <div class="stat-card">
+        <h2>Total Abonnements</h2>
+        <p>{{ stats?.subscriptions.length || 0 }}</p>
+      </div>
+    </div>
+  
+    <!-- Raccourcis Section -->
+    <span class="quick"><h2>Accès Rapide</h2></span>
+    <div class="quick-access">
+      <button (click)="navigateTo('/dashboard/gestion-clients')">
+        <i class="fas fa-users"></i> Gérer les Clients
+      </button>
+      <button (click)="navigateTo('/dashboard/gestion-offres')">
+        <i class="fas fa-box"></i> Gérer les Offres
+      </button>
+      <button (click)="navigateTo('/dashboard/souscription')">
+        <i class="fas fa-list-alt"></i> Gérer les Souscriptions
+      </button>
+    </div>
+  </div>
+  

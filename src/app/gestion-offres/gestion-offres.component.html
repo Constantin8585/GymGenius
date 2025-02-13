@@ -1,9 +1,16 @@
 <div class="packs-container">
   <h2>Gestion des Offres</h2>
-  <button (click)="openModal()">
-    <i class="fas fa-plus"></i> Ajouter une Offre
-  </button>
-
+  <div class="actions-bar">
+    <button (click)="openModal()">
+      <i class="fas fa-plus"></i> Ajouter une Offre
+    </button>
+    <input
+      type="text"
+      placeholder="Rechercher une offre"
+      [(ngModel)]="searchTerm"
+      (input)="applyFilter()"
+    />
+  </div>
   
   <div class="pack-list-wrapper">
     <table>
@@ -20,12 +27,12 @@
       </thead>
       <tbody>
         <tr *ngFor="let pack of filteredPacks">
-          <td>{{pack.id}}</td>
-          <td>{{pack.name}}</td>
-          <td>{{pack.description}}</td>
-          <td>{{pack.price}}</td>
-          <td>{{pack.durationMonths}}</td>
-          <td>{{pack.monthlyPrice}}</td>
+          <td>{{ pack.id }}</td>
+          <td>{{ pack.name }}</td>
+          <td>{{ pack.description }}</td>
+          <td>{{ pack.price }}</td>
+          <td>{{ pack.durationMonths }}</td>
+          <td>{{ pack.monthlyPrice }}</td>
           <td>
             <button (click)="editPack(pack)">
               <i class="fas fa-edit"></i>
@@ -37,26 +44,5 @@
         </tr>
       </tbody>
     </table>
-  </div>
-</div>
-
-<!-- Modal -->
-<div id="myModal" class="modal" [class.show]="isModalOpen">
-  <div class="modal-content">
-    <span class="close" (click)="closeModal()">&times;</span>
-    <h2>{{ newPack.id ? 'Modifier une Offre' : 'Ajouter une Offre' }}</h2>
-    <form (ngSubmit)="onSubmit()" #packForm="ngForm">
-      <label for="name">Nom</label>
-      <input type="text" id="name" name="name" [(ngModel)]="newPack.name" required>
-      <label for="description">Description</label>
-      <input type="text" id="description" name="description" [(ngModel)]="newPack.description" required>
-      <label for="price">Prix</label>
-      <input type="number" id="price" name="price" [(ngModel)]="newPack.price" required>
-      <label for="durationMonths">Durée (mois)</label>
-      <input type="number" id="durationMonths" name="durationMonths" [(ngModel)]="newPack.durationMonths" required>
-      <label for="monthlyPrice">Prix Mensuel</label>
-      <input type="number" id="monthlyPrice" name="monthlyPrice" required>
-      <button type="submit">Enregistrer</button>
-    </form>
   </div>
 </div>
