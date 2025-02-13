@@ -1,3 +1,17 @@
+.login-page-container{
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Open Sans", sans-serif;
+    background: url("gym-login.jpg"), rgba(0, 0, 0, 0.5);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: aliceblue;
+}
+
 .login-container {
     display: flex;
     justify-content: center;
