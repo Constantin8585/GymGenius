@@ -4,6 +4,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AccueilComponent } from './accueil/accueil.component';
 import { ClientComponent } from './client/client.component';
 import { OffreComponent } from './offre/offre.component';
+import { GestionOffresComponent } from './gestion-offres/gestion-offres.component';
+import { StatsComponent } from './stats/stats.component';
+import { GestionClientsComponent } from './gestion-clients/gestion-clients.component';
 
 
 export const routes: Routes = [
@@ -22,7 +25,10 @@ export const routes: Routes = [
         { path: '', redirectTo: 'accueil', pathMatch: 'full' },
         { path: 'accueil', component: AccueilComponent },
         { path: 'client', component: ClientComponent },
-        { path: 'offre', component: OffreComponent }
+        { path: 'offre', component: OffreComponent },
+        { path: 'gestion-clients', component: GestionClientsComponent },
+        { path: 'gestion-offres', component: GestionOffresComponent },
+        { path: 'stats', component: StatsComponent }
       ]
     }
   ];

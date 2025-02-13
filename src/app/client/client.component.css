@@ -8,23 +8,33 @@ h2 {
   margin-bottom: 20px;
 }
 
-button {
-  margin-right: 10px;
+.search-container {
+  margin-bottom: 20px;
 }
 
-table {
+.search-container input {
   width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
+  padding: 8px;
+  box-sizing: border-box;
 }
 
-th, td {
-  padding: 10px;
+.clients-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.client-card {
+  background-color: #f9f9f9;
   border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 8px;
+  width: 300px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-th {
-  background-color: #f4f4f4;
+.client-card p {
+  margin: 5px 0;
 }
 
 /* Modal styles */

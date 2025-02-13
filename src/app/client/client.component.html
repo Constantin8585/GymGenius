@@ -1,32 +1,18 @@
 <div class="clients-container">
-  <h2>Gestion des Clients</h2>
-  <button (click)="openModal()">Ajouter un Client</button>
-  
-  <table>
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Nom</th>
-        <th>Prénom</th>
-        <th>Numéro de Téléphone</th>
-        <th>Date d'Inscription</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let client of clients">
-        <td>{{client.id}}</td>
-        <td>{{client.lastName}}</td>
-        <td>{{client.firstName}}</td>
-        <td>{{client.phoneNumber}}</td>
-        <td>{{client.registrationDate | date}}</td>
-        <td>
-          <button (click)="editClient(client)">Modifier</button>
-          <button (click)="deleteClient(client.id!)">Supprimer</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <h2>Liste des Clients</h2>
+
+  <div class="search-container">
+    <input type="text" placeholder="Rechercher un client..." [(ngModel)]="searchTerm" (input)="applyFilter()">
+  </div>
+
+  <div class="clients-list">
+    <div class="client-card" *ngFor="let client of filteredClients">
+      <p><strong>Nom :</strong> {{ client.lastName }}</p>
+      <p><strong>Prénom :</strong> {{ client.firstName }}</p>
+      <p><strong>Numéro de Téléphone :</strong> {{ client.phoneNumber }}</p>
+      <p><strong>Date d'Inscription :</strong> {{ client.registrationDate | date }}</p>
+    </div>
+  </div>
 </div>
 
 <!-- Modal -->
