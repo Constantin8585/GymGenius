@@ -1,1 +1,30 @@
-<p>client works!</p>
+<div class="clients-container">
+  <h2>Gestion des Clients</h2>
+  <button (click)="addClient()">Ajouter un Client</button>
+  
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Numéro de Téléphone</th>
+        <th>Date d'Inscription</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let client of clients">
+        <td>{{client.id}}</td>
+        <td>{{client.lastName}}</td>
+        <td>{{client.firstName}}</td>
+        <td>{{client.phoneNumber}}</td>
+        <td>{{client.registrationDate | date}}</td>
+        <td>
+          <button (click)="editClient(client)">Modifier</button>
+          <button (click)="deleteClient(client.id!)">Supprimer</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
