@@ -1,10 +1,7 @@
 <div class="packs-container">
   <h2>Liste des Offres</h2>
 
-  <div class="search-container">
-    <input type="text" placeholder="Rechercher une offre..." [(ngModel)]="searchTerm" (input)="applyFilter()">
-  </div>
-
+<div class="packs-list-wrapper">
   <div class="packs-list">
     <div class="pack-card" *ngFor="let pack of filteredPacks">
       <h3>{{ pack.name }}</h3>
@@ -15,7 +12,7 @@
     </div>
   </div>
 </div>
-
+</div>
 <!-- Modal -->
 <div id="myModal" class="modal" [class.show]="isModalOpen">
   <div class="modal-content">

@@ -19,7 +19,6 @@ export class DashboardComponent {
   constructor(private router: Router, private authService: AuthService) { }
 
   ngOnInit() {
-  
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.activePage = event.urlAfterRedirects;
@@ -36,5 +35,10 @@ export class DashboardComponent {
 
   setActivePage(page: string) {
     this.activePage = page;
+  }
+
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/login']); // Redirige l'utilisateur vers la page de login après la déconnexion
   }
 }

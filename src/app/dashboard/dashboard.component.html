@@ -9,7 +9,7 @@
 
     <div class="user-info">
         <div class="user-frame">
-           
+            <span class="user-name">{{ username }}</span>
         </div>
     </div>
 </div>
@@ -52,16 +52,15 @@
                 class="nav-item">
                 <i class="fas fa-box-open"></i> Gestion des Offres
             </a>
-        </div><div class="option-frame">
+        </div>
+        <div class="option-frame">
             <a routerLink="/dashboard/stats" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
                 class="nav-item">
                 <i class="fas fa-chart-line"></i> Statistiques
             </a>
         </div>
-        
-
         <div class="logout">
-            <button class="logout-button"><i class="fas fa-sign-out-alt"></i> Se déconnecter</button>
+            <button class="logout-button" (click)="logout()"><i class="fas fa-sign-out-alt"></i> Se déconnecter</button>
         </div>
     </div>
     <div class="content" [class.content-full]="!isSidebarOpen">

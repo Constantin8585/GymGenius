@@ -17,6 +17,9 @@ button {
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 button:hover {
@@ -32,6 +35,13 @@ button:hover {
   padding: 8px;
   box-sizing: border-box;
   border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.subscriptions-list-wrapper {
+  max-height: 400px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
   border-radius: 4px;
 }
 
@@ -65,6 +75,16 @@ button:hover {
 
 .subscription-card p {
   margin: 5px 0;
+}
+
+.subscription-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+button i {
+  margin-right: 5px;
 }
 
 /* Modal styles */

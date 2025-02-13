@@ -1,43 +1,48 @@
 <div class="subscriptions-container">
   <h2>Gestion des Souscriptions</h2>
+  <button (click)="openModal()">
+    <i class="fas fa-plus"></i> Ajouter une Souscription
+  </button>
 
-  <button (click)="openModal()">Ajouter une Souscription</button>
-
-  <div class="search-container">
-    <input type="text" placeholder="Rechercher une souscription..." [(ngModel)]="searchTerm" (input)="applyFilter()">
-  </div>
-
-  <div class="subscriptions-list">
-    <div class="subscription-card" *ngFor="let subscription of filteredSubscriptions">
-      <h3>{{ subscription.customer.lastName }} {{ subscription.customer.firstName }}</h3>
-      <p><strong>Pack :</strong> {{ subscription.pack.name }}</p>
-      <p><strong>Date de Début :</strong> {{ subscription.startDate }}</p>
-      <p><strong>Active :</strong> {{ subscription.activeSubscription ? 'Oui' : 'Non' }}</p>
-      <button (click)="editSubscription(subscription)">Modifier</button>
-      <button (click)="deleteSubscription(subscription.id!)">Supprimer</button>
+  <div class="subscriptions-list-wrapper">
+    <div class="subscriptions-list">
+      <div class="subscription-card" *ngFor="let subscription of filteredSubscriptions">
+        <h3>{{ subscription.customer.lastName }} {{ subscription.customer.firstName }}</h3>
+        <p><strong>Pack :</strong> {{ subscription.pack.name }}</p>
+        <p><strong>Date de Début :</strong> {{ subscription.startDate }}</p>
+        <p><strong>Active :</strong> {{ subscription.activeSubscription ? 'Oui' : 'Non' }}</p>
+        <div class="subscription-actions">
+          <button (click)="editSubscription(subscription)">
+            <i class="fas fa-edit"></i>
+          </button>
+          <button (click)="deleteSubscription(subscription.id!)">
+            <i class="fas fa-trash"></i>
+          </button>
+        </div>
+      </div>
     </div>
   </div>
+</div>
 
-  <!-- Modal -->
-  <div id="myModal" class="modal" [class.show]="isModalOpen">
-    <div class="modal-content">
-      <span class="close" (click)="closeModal()">&times;</span>
-      <h2>{{ newSubscription.id ? 'Modifier une Souscription' : 'Ajouter une Souscription' }}</h2>
-      <form (ngSubmit)="onSubmit()" #subscriptionForm="ngForm">
-        <label for="customer">Client</label>
-        <select id="customer" name="customer" [(ngModel)]="newSubscription.customer.id" required>
-          <option *ngFor="let customer of customers" [ngValue]="customer.id">{{ customer.lastName }} {{ customer.firstName }}</option>
-        </select>
-        <label for="pack">Pack</label>
-        <select id="pack" name="pack" [(ngModel)]="newSubscription.pack.id" required>
-          <option *ngFor="let pack of packs" [ngValue]="pack.id">{{ pack.name }}</option>
-        </select>
-        <label for="startDate">Date de Début</label>
-        <input type="date" id="startDate" name="startDate" [(ngModel)]="newSubscription.startDate" required>
-        <label for="activeSubscription">Active</label>
-        <input type="checkbox" id="activeSubscription" name="activeSubscription" [(ngModel)]="newSubscription.activeSubscription">
-        <button type="submit">Enregistrer</button>
-      </form>
-    </div>
+<!-- Modal -->
+<div id="myModal" class="modal" [class.show]="isModalOpen">
+  <div class="modal-content">
+    <span class="close" (click)="closeModal()">&times;</span>
+    <h2>{{ newSubscription.id ? 'Modifier une Souscription' : 'Ajouter une Souscription' }}</h2>
+    <form (ngSubmit)="onSubmit()" #subscriptionForm="ngForm">
+      <label for="customer">Client</label>
+      <select id="customer" name="customer" [(ngModel)]="newSubscription.customer.id" required>
+        <option *ngFor="let customer of customers" [ngValue]="customer.id">{{ customer.lastName }} {{ customer.firstName }}</option>
+      </select>
+      <label for="pack">Pack</label>
+      <select id="pack" name="pack" [(ngModel)]="newSubscription.pack.id" required>
+        <option *ngFor="let pack of packs" [ngValue]="pack.id">{{ pack.name }}</option>
+      </select>
+      <label for="startDate">Date de Début</label>
+      <input type="date" id="startDate" name="startDate" [(ngModel)]="newSubscription.startDate" required>
+      <label for="activeSubscription">Active</label>
+      <input type="checkbox" id="activeSubscription" name="activeSubscription" [(ngModel)]="newSubscription.activeSubscription">
+      <button type="submit">Enregistrer</button>
+    </form>
   </div>
 </div>

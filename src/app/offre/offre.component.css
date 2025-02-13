@@ -18,6 +18,13 @@ h2 {
   box-sizing: border-box;
 }
 
+.packs-list-wrapper {
+  max-height: 400px; /* Ajuste cette valeur selon la hauteur souhaitée */
+  overflow-y: auto;
+  border: 1px solid #ddd; /* Pour délimiter la zone de défilement */
+  border-radius: 4px;
+}
+
 .packs-list {
   display: flex;
   flex-wrap: wrap;

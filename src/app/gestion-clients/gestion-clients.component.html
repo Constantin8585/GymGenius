@@ -1,7 +1,10 @@
 <div class="clients-container">
-    <h2>Gestion des Clients</h2>
-    <button (click)="openModal()">Ajouter un Client</button>
-    
+  <h2>Gestion des Clients</h2>
+  <button (click)="openModal()">
+    <i class="fas fa-plus"></i> Ajouter un Client
+  </button>
+
+  <div class="customers-list-wrapper">
     <table>
       <thead>
         <tr>
@@ -21,30 +24,34 @@
           <td>{{client.phoneNumber}}</td>
           <td>{{client.registrationDate | date}}</td>
           <td>
-            <button (click)="editClient(client)">Modifier</button>
-            <button (click)="deleteClient(client.id!)">Supprimer</button>
+            <button (click)="editClient(client)">
+              <i class="fas fa-edit"></i>
+            </button>
+            <button (click)="deleteClient(client.id!)">
+              <i class="fas fa-trash"></i>
+            </button>
           </td>
         </tr>
       </tbody>
     </table>
   </div>
-  
-  <!-- Modal -->
-  <div id="myModal" class="modal" [class.show]="isModalOpen">
-    <div class="modal-content">
-      <span class="close" (click)="closeModal()">&times;</span>
-      <h2>{{ newCustomer.id ? 'Modifier un Client' : 'Ajouter un Client' }}</h2>
-      <form (ngSubmit)="onSubmit()" #customerForm="ngForm">
-        <label for="lastName">Nom</label>
-        <input type="text" id="lastName" name="lastName" [(ngModel)]="newCustomer.lastName" required>
-        <label for="firstName">Prénom</label>
-        <input type="text" id="firstName" name="firstName" [(ngModel)]="newCustomer.firstName" required>
-        <label for="phoneNumber">Numéro de Téléphone</label>
-        <input type="text" id="phoneNumber" name="phoneNumber" [(ngModel)]="newCustomer.phoneNumber" required>
-        <label for="registrationDate">Date d'Inscription</label>
-        <input type="date" id="registrationDate" name="registrationDate" [(ngModel)]="newCustomer.registrationDate" required>
-        <button type="submit">Enregistrer</button>
-      </form>
-    </div>
+</div>
+
+<!-- Modal -->
+<div id="myModal" class="modal" [class.show]="isModalOpen">
+  <div class="modal-content">
+    <span class="close" (click)="closeModal()">&times;</span>
+    <h2>{{ newCustomer.id ? 'Modifier un Client' : 'Ajouter un Client' }}</h2>
+    <form (ngSubmit)="onSubmit()" #customerForm="ngForm">
+      <label for="lastName">Nom</label>
+      <input type="text" id="lastName" name="lastName" [(ngModel)]="newCustomer.lastName" required>
+      <label for="firstName">Prénom</label>
+      <input type="text" id="firstName" name="firstName" [(ngModel)]="newCustomer.firstName" required>
+      <label for="phoneNumber">Numéro de Téléphone</label>
+      <input type="text" id="phoneNumber" name="phoneNumber" [(ngModel)]="newCustomer.phoneNumber" required>
+      <label for="registrationDate">Date d'Inscription</label>
+      <input type="date" id="registrationDate" name="registrationDate" [(ngModel)]="newCustomer.registrationDate" required>
+      <button type="submit">Enregistrer</button>
+    </form>
   </div>
-  
+</div>

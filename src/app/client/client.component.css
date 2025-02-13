@@ -6,21 +6,41 @@
 h2 {
   text-align: center;
   margin-bottom: 20px;
+  color: #4CAF50;
 }
 
-.search-container {
+button {
   margin-bottom: 20px;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-.search-container input {
-  width: 100%;
-  padding: 8px;
-  box-sizing: border-box;
+button:hover {
+  background-color: #45a049;
+}
+
+button i {
+  margin-right: 5px;
+}
+
+.clients-list-wrapper {
+  max-height: 400px; /* Ajuste cette valeur selon la hauteur souhaitée */
+  overflow-y: auto;
+  border: 1px solid #ddd; /* Pour délimiter la zone de défilement */
+  border-radius: 4px;
 }
 
 .clients-list {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Affiche les clients en grille */
   gap: 20px;
 }
 
@@ -29,64 +49,33 @@ h2 {
   border: 1px solid #ddd;
   padding: 20px;
   border-radius: 8px;
-  width: 300px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.client-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .client-card p {
   margin: 5px 0;
 }
 
-/* Modal styles */
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgb(0,0,0);
-  background-color: rgba(0,0,0,0.4);
-  padding-top: 60px;
-}
-
-.modal.show {
-  display: block;
-}
-
-.modal-content {
-  background-color: #fefefe;
-  margin: 5% auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
-  max-width: 500px;
-}
-
-.close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-label {
-  display: block;
+.client-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
   margin-top: 10px;
 }
 
-input[type="text"], input[type="date"] {
-  width: 100%;
-  padding: 8px;
-  margin-top: 5px;
-  box-sizing: border-box;
+.client-actions button {
+  background-color: #2196F3;
 }
+
+.client-actions button:hover {
+  background-color: #1976D2;
+}
+
