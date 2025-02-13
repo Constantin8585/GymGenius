@@ -1,14 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-
+import { SubscriptionService } from '../services/Subscription/subscription.service';
+import { CustomerService } from '../services/Customer/customer.service';
+import { PackService } from '../services/Pack/pack.service';
 import { Subscription } from '../models/subscription.model';
-
 import { Customer } from '../models/customer.model';
 import { Pack } from '../models/pack.model';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { SubscriptionService } from '../services/Subscription/subscription.service';
-import { CustomerService } from '../services/Customer/customer.service';
-import { PackService } from '../services/Pack/pack.service';
 
 @Component({
   selector: 'app-subscription',
@@ -25,7 +23,11 @@ export class SubscriptionComponent implements OnInit {
   newSubscription: Subscription = { customer: { id: 0, lastName: '', firstName: '', phoneNumber: '', registrationDate: '' }, pack: { id: 0, name: '', description: '', price: 0, durationMonths: 0, monthlyPrice: 0 }, startDate: '', activeSubscription: true };
   searchTerm: string = '';
 
-  constructor(private subscriptionService: SubscriptionService, private customerService: CustomerService, private packService: PackService) {}
+  constructor(
+    private subscriptionService: SubscriptionService,
+    private customerService: CustomerService,
+    private packService: PackService
+  ) {}
 
   ngOnInit() {
     this.loadSubscriptions();
@@ -66,21 +68,29 @@ export class SubscriptionComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.newSubscription.id) {
-      this.subscriptionService.updateSubscription(this.newSubscription.id, this.newSubscription).subscribe(updatedSubscription => {
-        const index = this.subscriptions.findIndex(s => s.id === this.newSubscription.id);
-        if (index !== -1) {
-          this.subscriptions[index] = updatedSubscription;
-          this.filteredSubscriptions[index] = updatedSubscription; // Update filteredSubscriptions as well
-        }
-        this.closeModal();
-      });
-    } else {
-      this.subscriptionService.addSubscription(this.newSubscription).subscribe(subscription => {
-        this.subscriptions.push(subscription);
-        this.filteredSubscriptions.push(subscription); // Add to filteredSubscriptions as well
-        this.closeModal();
-      });
+    const customer = this.customers.find(c => c.id === this.newSubscription.customer.id);
+    const pack = this.packs.find(p => p.id === this.newSubscription.pack.id);
+    
+    if (customer && pack) {
+      this.newSubscription.customer = customer;
+      this.newSubscription.pack = pack;
+
+      if (this.newSubscription.id) {
+        this.subscriptionService.updateSubscription(this.newSubscription.id, this.newSubscription).subscribe(updatedSubscription => {
+          const index = this.subscriptions.findIndex(s => s.id === this.newSubscription.id);
+          if (index !== -1) {
+            this.subscriptions[index] = updatedSubscription;
+            this.filteredSubscriptions[index] = updatedSubscription; // Update filteredSubscriptions as well
+          }
+          this.closeModal();
+        });
+      } else {
+        this.subscriptionService.addSubscription(this.newSubscription).subscribe(subscription => {
+          this.subscriptions.push(subscription);
+          this.filteredSubscriptions = [...this.subscriptions]; // Update filteredSubscriptions to match subscriptions
+          this.closeModal();
+        });
+      }
     }
   }
 
