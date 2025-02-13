@@ -27,7 +27,12 @@ export class ClientComponent implements OnInit {
     });
   }
 
-  openModal() {
+  openModal(customer?: Customer) {
+    if (customer) {
+      this.newCustomer = { ...customer };
+    } else {
+      this.newCustomer = { lastName: '', firstName: '', phoneNumber: '', registrationDate: '' };
+    }
     this.isModalOpen = true;
   }
 
@@ -36,20 +41,34 @@ export class ClientComponent implements OnInit {
   }
 
   onSubmit() {
-    this.customerService.addCustomer(this.newCustomer).subscribe(customer => {
-      this.clients.push(customer);
-      this.closeModal();
-    });
+    if (this.newCustomer.id) {
+      this.customerService.updateCustomer(this.newCustomer.id, this.newCustomer).subscribe(
+        updatedCustomer => {
+          const index = this.clients.findIndex(c => c.id === this.newCustomer.id);
+          if (index !== -1) {
+            this.clients[index] = updatedCustomer;
+          }
+          this.closeModal();
+        },
+        error => {
+          console.error('Erreur lors de la mise à jour du client', error);
+        }
+      );
+    } else {
+      this.customerService.addCustomer(this.newCustomer).subscribe(
+        customer => {
+          this.clients.push(customer);
+          this.closeModal();
+        },
+        error => {
+          console.error('Erreur lors de l\'ajout du client', error);
+        }
+      );
+    }
   }
 
   editClient(client: Customer) {
-    const editedClient = { ...client, lastName: client.lastName + ' (modifié)' };
-    this.customerService.updateCustomer(client.id!, editedClient).subscribe(updatedClient => {
-      const index = this.clients.findIndex(c => c.id === client.id);
-      if (index !== -1) {
-        this.clients[index] = updatedClient;
-      }
-    });
+    this.openModal(client);
   }
 
   deleteClient(id: number) {
