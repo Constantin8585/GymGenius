@@ -1,5 +1,50 @@
-<div class="dashboard-container">
-    <h1>Bienvenue sur le tableau de bord GymGenius !</h1>
-    <p>Vous êtes connecté.</p>
-  </div>
-  
+<div class="navbar">
+    <button class="hamburger" (click)="toggleSidebar()">
+        <i class="fas fa-bars"></i>
+    </button>
+    <h1>GymApp</h1>
+    <nav>
+        <ul>
+            <li><a href="#">Accueil</a></li>
+            <li><a href="#">À propos</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+    <div class="user-info">
+        <div class="user-frame">
+            <img src="./gym-login.jpg" alt="User Icon" class="user-icon">
+            <span class="user-name">G.Abed-Nego</span>
+        </div>
+    </div>
+</div>
+
+<div class="layout-container" [class.sidebar-open]="isSidebarOpen">
+    <div class="sidebar" [class.sidebar-open]="isSidebarOpen">
+        <h2>Options</h2>
+        <div class="option-frame">
+            <a routerLink="/dashboard/accueil" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+                class="nav-item">
+                <i class="fas fa-home"></i> Accueil
+            </a>
+        </div>
+        <div class="option-frame">
+            <a routerLink="/dashboard/client" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+                class="nav-item">
+                <i class="fas fa-users"></i> Clients
+            </a>
+        </div>
+        <div class="option-frame">
+            <a routerLink="/dashboard/offre" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+                class="nav-item">
+                <i class="fas fa-gift"></i> Offres
+            </a>
+        </div>
+
+        <div class="logout">
+            <button class="logout-button"><i class="fas fa-sign-out-alt"></i> Se déconnecter</button>
+        </div>
+    </div>
+    <div class="content" [class.content-full]="!isSidebarOpen">
+        <router-outlet></router-outlet>
+    </div>
+</div>
