@@ -72,30 +72,7 @@ html, body {
     color: #17a2b8; /* Couleur lors du survol */
   }
   
-  .user-info {
-    display: flex;
-    align-items: center;
-  }
   
-  .user-frame {
-    display: flex;
-    align-items: center;
-    border: 1px solid #17a2b8; /* Cadre autour de la zone utilisateur */
-    padding: 5px 10px;
-    border-radius: 5px; /* Coins arrondis */
-    background-color: #495057; /* Couleur de fond de la zone utilisateur */
-  }
-  
-  .user-icon {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    margin-right: 10px;
-  }
-  
-  .user-name {
-    color: white;
-  }
   
   .layout-container {
     display: flex;
