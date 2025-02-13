@@ -2,15 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { CustomerService } from '../services/Customer/customer.service';
 import { Customer } from '../models/customer.model';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-client',
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './client.component.html',
   styleUrls: ['./client.component.css']
 })
 export class ClientComponent implements OnInit {
   clients: Customer[] = [];
+  isModalOpen = false;
+  newCustomer: Customer = { lastName: '', firstName: '', phoneNumber: '', registrationDate: '' };
 
   constructor(private customerService: CustomerService) {}
 
@@ -24,10 +27,18 @@ export class ClientComponent implements OnInit {
     });
   }
 
-  addClient() {
-    const newClient: Customer = { lastName: 'Nouveau', firstName: 'Client', phoneNumber: '0000000000' };
-    this.customerService.addCustomer(newClient).subscribe(customer => {
+  openModal() {
+    this.isModalOpen = true;
+  }
+
+  closeModal() {
+    this.isModalOpen = false;
+  }
+
+  onSubmit() {
+    this.customerService.addCustomer(this.newCustomer).subscribe(customer => {
       this.clients.push(customer);
+      this.closeModal();
     });
   }
 
