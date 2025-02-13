@@ -11,6 +11,7 @@
       <p><strong>Prénom :</strong> {{ client.firstName }}</p>
       <p><strong>Numéro de Téléphone :</strong> {{ client.phoneNumber }}</p>
       <p><strong>Date d'Inscription :</strong> {{ client.registrationDate | date }}</p>
+      <p><strong>Abonnement :</strong> {{ getSubscriptionDetails(client) }}</p>
     </div>
   </div>
 </div>

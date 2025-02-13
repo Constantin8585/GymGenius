@@ -1,1 +1,46 @@
-<p>stats works!</p>
+<div class="stats-container">
+    <h2>Statistiques</h2>
+    <div *ngIf="stats">
+      <div class="stat-row">
+        <div class="stat-item">
+          <h3>Nombre total de clients</h3>
+          <p>{{ stats.totalCustomers }}</p>
+        </div>
+        <div class="stat-item">
+          <h3>Nombre total de souscriptions</h3>
+          <p>{{ stats.totalSubscriptions }}</p>
+        </div>
+      </div>
+      <div class="stat-row">
+        <div class="stat-item">
+          <h3>Nombre total de souscriptions actives</h3>
+          <p>{{ stats.activeSubscriptions }}</p>
+        </div>
+        <div class="stat-item">
+          <h3>Nombre total de souscriptions inactives</h3>
+          <p>{{ stats.inactiveSubscriptions }}</p>
+        </div>
+      </div>
+      <div class="stat-row">
+        <div class="stat-item">
+          <h3>Pourcentage de clients avec souscriptions actives</h3>
+          <p>{{ stats.activeSubscriptionPercentage.toFixed(2) }}%</p>
+        </div>
+        <div class="stat-item">
+          <h3>Nombre de souscriptions par pack</h3>
+          <div *ngFor="let pack of stats.subscriptionsByPack">
+            <p>{{ pack.name }}: {{ pack.count }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="stat-row">
+        <div class="stat-item">
+          <h3>Nombre de clients par date d'inscription</h3>
+          <div *ngFor="let dateStat of stats.customersByRegistrationDate">
+            <p>{{ dateStat.date }}: {{ dateStat.count }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

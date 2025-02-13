@@ -25,6 +25,7 @@ export class ClientComponent implements OnInit {
 
   loadCustomers() {
     this.customerService.getCustomers().subscribe(customers => {
+      console.log(customers); // Log the customers to check the data received
       this.clients = customers;
       this.filteredClients = customers; // Initialize filteredClients with all customers
     });
@@ -89,5 +90,18 @@ export class ClientComponent implements OnInit {
       client.firstName.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
       client.phoneNumber.includes(this.searchTerm)
     );
+  }
+
+  getSubscriptionDetails(customer: Customer): string {
+    if (customer.subscriptions && customer.subscriptions.length > 0) {
+      const activeSubscription = customer.subscriptions.find(sub => sub.activeSubscription);
+      if (activeSubscription) {
+        const endDate = new Date(activeSubscription.startDate);
+        endDate.setMonth(endDate.getMonth() + activeSubscription.pack.durationMonths);
+        return `Abonnement Actif: Fin le ${endDate.toLocaleDateString()}`;
+      }
+      return "Abonnement Inactif";
+    }
+    return "Pas d'abonnement";
   }
 }
