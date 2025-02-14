@@ -55,6 +55,7 @@
     cursor: pointer;
     display: flex;
     align-items: center;
+    transition: background-color 0.3s;
     gap: 10px;
   }
   
