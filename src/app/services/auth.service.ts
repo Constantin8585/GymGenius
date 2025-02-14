@@ -28,7 +28,17 @@ export class AuthService {
     const token = localStorage.getItem('access_token');
     if (token) {
       const decodedToken = this.jwtHelper.decodeToken(token);
-      return decodedToken?.username || null;  // Assurez-vous que le token contient bien un champ "username"
+      return decodedToken?.sub || null;  // Assurez-vous que le token contient bien un champ "sub"
+    }
+    return null;
+  }
+
+  // Récupère le rôle de l'utilisateur à partir du token
+  getUserRole(): string | null {
+    const token = localStorage.getItem('access_token');
+    if (token) {
+      const decodedToken = this.jwtHelper.decodeToken(token);
+      return decodedToken?.role ? decodedToken.role.replace('ROLE_', '').toLowerCase() : null;  // Retire le préfixe "ROLE_"
     }
     return null;
   }
@@ -36,5 +46,6 @@ export class AuthService {
   // Déconnexion
   logout(): void {
     localStorage.removeItem('access_token');
+    localStorage.removeItem('user_role'); // Supprime le rôle de l'utilisateur du stockage local
   }
 }

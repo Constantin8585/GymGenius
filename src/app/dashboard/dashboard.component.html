@@ -1,69 +1,63 @@
 <div class="navbar">
     <button class="hamburger" (click)="toggleSidebar()">
-        <i class="fas fa-bars"></i>
+      <i class="fas fa-bars"></i>
     </button>
     <h1>GymGenius</h1>
     <h3>DISCIPLINE</h3>
     <h4>STAY FOCUS</h4>
     <h5>WORK HARD</h5>
-
+  
     <div class="user-info">
-        <div class="user-frame">
-            <span class="user-name">{{ username }}</span>
-        </div>
+      <div class="user-frame">
+        <span class="user-name">{{ username }}</span>
+        <span class="user-role">{{ userRole }}</span>  <!-- Ajoutez ce log pour vérifier le rôle affiché -->
+      </div>
+    </div>
+  </div>
+  
+  <div class="layout-container" [class.sidebar-open]="isSidebarOpen">
+    <div class="sidebar" [class.sidebar-open]="isSidebarOpen">
+      <h2>Options</h2>
+      <div class="option-frame">
+        <a routerLink="/dashboard/accueil" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="nav-item">
+          <i class="fas fa-home"></i> Accueil
+        </a>
+      </div>
+      <div class="option-frame" *ngIf="hasRole('admin') || hasRole('editor') || hasRole('viewer')">
+        <a routerLink="/dashboard/client" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="nav-item">
+          <i class="fas fa-users"></i> Clients
+        </a>
+      </div>
+      <div class="option-frame" *ngIf="hasRole('admin') || hasRole('editor') || hasRole('viewer')">
+        <a routerLink="/dashboard/offre" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="nav-item">
+          <i class="fas fa-gift"></i> Offres
+        </a>
+      </div>
+      <div class="option-frame" *ngIf="hasRole('admin') || hasRole('editor')">
+        <a routerLink="/dashboard/souscription" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="nav-item">
+          <i class="fas fa-gift"></i> Souscriptions
+        </a>
+      </div>
+      <div class="option-frame" *ngIf="hasRole('admin') || hasRole('editor')">
+        <a routerLink="/dashboard/gestion-clients" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="nav-item">
+          <i class="fas fa-id-card"></i> Gestion des clients
+        </a>
+      </div>
+      <div class="option-frame" *ngIf="hasRole('admin') || hasRole('editor')">
+        <a routerLink="/dashboard/gestion-offres" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="nav-item">
+          <i class="fas fa-box-open"></i> Gestion des Offres
+        </a>
+      </div>
+      <div class="option-frame" *ngIf="hasRole('admin')">
+        <a routerLink="/dashboard/stats" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="nav-item">
+          <i class="fas fa-chart-line"></i> Statistiques
+        </a>
+      </div>
+      <div class="logout">
+        <button class="logout-button" (click)="logout()"><i class="fas fa-sign-out-alt"></i> Se déconnecter</button>
     </div>
 </div>
-
-<div class="layout-container" [class.sidebar-open]="isSidebarOpen">
-    <div class="sidebar" [class.sidebar-open]="isSidebarOpen">
-        <h2>Options</h2>
-        <div class="option-frame">
-            <a routerLink="/dashboard/accueil" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
-                class="nav-item">
-                <i class="fas fa-home"></i> Accueil
-            </a>
-        </div>
-        <div class="option-frame">
-            <a routerLink="/dashboard/client" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
-                class="nav-item">
-                <i class="fas fa-users"></i> Clients
-            </a>
-        </div>
-        <div class="option-frame">
-            <a routerLink="/dashboard/offre" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
-                class="nav-item">
-                <i class="fas fa-gift"></i> Offres
-            </a>
-        </div>
-        <div class="option-frame">
-            <a routerLink="/dashboard/souscription" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
-                class="nav-item">
-                <i class="fas fa-gift"></i> Souscriptions
-            </a>
-        </div>
-        <div class="option-frame">
-            <a routerLink="/dashboard/gestion-clients" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
-                class="nav-item">
-                <i class="fas fa-id-card"></i> Gestion des clients
-            </a>
-        </div>
-        <div class="option-frame">
-            <a routerLink="/dashboard/gestion-offres" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
-                class="nav-item">
-                <i class="fas fa-box-open"></i> Gestion des Offres
-            </a>
-        </div>
-        <div class="option-frame">
-            <a routerLink="/dashboard/stats" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
-                class="nav-item">
-                <i class="fas fa-chart-line"></i> Statistiques
-            </a>
-        </div>
-        <div class="logout">
-            <button class="logout-button" (click)="logout()"><i class="fas fa-sign-out-alt"></i> Se déconnecter</button>
-        </div>
-    </div>
-    <div class="content" [class.content-full]="!isSidebarOpen">
-        <router-outlet></router-outlet>
-    </div>
+<div class="content" [class.content-full]="!isSidebarOpen">
+    <router-outlet></router-outlet>
+</div>
 </div>

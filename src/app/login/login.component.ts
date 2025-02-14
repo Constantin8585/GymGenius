@@ -27,6 +27,7 @@ export class LoginComponent {
     this.authService.login(this.credentials).subscribe(
       (response: any) => {
         localStorage.setItem('access_token', response.token);
+        localStorage.setItem('user_role', response.role.replace('ROLE_', '').toLowerCase());  // Stocke le rôle de l'utilisateur
         this.router.navigate(['/dashboard']);
       },
       error => {
