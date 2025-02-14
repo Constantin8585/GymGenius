@@ -1,0 +1,40 @@
+<div class="users-container">
+    <h2>Gestion des Utilisateurs</h2>
+    <button (click)="openModal()">Ajouter un Utilisateur</button>
+    <div class="users-list">
+      <div class="user-card" *ngFor="let user of users">
+        <p><strong>Nom d'utilisateur :</strong> {{ user.username }}</p>
+        <p><strong>Rôle :</strong> {{ user.role }}</p>
+        <div class="user-actions">
+          <button (click)="openModal(user)">
+            <i class="fas fa-edit"></i> Modifier
+          </button>
+          <button (click)="deleteUser(user.id!)">
+            <i class="fas fa-trash"></i> Supprimer
+          </button>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Modal pour Ajouter/Modifier un Utilisateur -->
+    <div *ngIf="isModalOpen" class="modal">
+      <div class="modal-content">
+        <span class="close" (click)="closeModal()">&times;</span>
+        <h2>{{ newUser.id ? 'Modifier Utilisateur' : 'Ajouter Utilisateur' }}</h2>
+        <form (ngSubmit)="onSubmit()">
+          <label for="username">Nom d'utilisateur</label>
+          <input type="text" id="username" [(ngModel)]="newUser.username" name="username" required>
+          <label for="password">Mot de passe</label>
+          <input type="password" id="password" [(ngModel)]="newUser.password" name="password" required>
+          <label for="role">Rôle</label>
+          <select id="role" [(ngModel)]="newUser.role" name="role" required>
+            <option value="admin">Admin</option>
+            <option value="editor">Editor</option>
+            <option value="viewer">Viewer</option>
+          </select>
+          <button type="submit">{{ newUser.id ? 'Modifier' : 'Ajouter' }}</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  

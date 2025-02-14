@@ -50,6 +50,11 @@
         </a>
       </div>
       <div class="option-frame" *ngIf="hasRole('admin')">
+        <a routerLink="/dashboard/gestion-utilisateurs" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="nav-item">
+          <i class="fas fa-chart-line"></i>Gestion des Utilisateurs
+        </a>
+      </div>
+      <div class="option-frame" *ngIf="hasRole('admin')">
         <a routerLink="/dashboard/stats" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="nav-item">
           <i class="fas fa-chart-line"></i> Statistiques
         </a>
