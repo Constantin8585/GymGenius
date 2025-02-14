@@ -52,3 +52,12 @@ button:hover {
   border-color: #fff;
   background: rgba(255, 255, 255, 0.15);
 }
+
+.error-message {
+  margin-top: 20px;
+  color: #f44336; /* Couleur rouge pour le texte */
+  background: #ffcdd2; /* Couleur de fond légèrement rouge */
+  padding: 10px;
+  border: 1px solid #f44336;
+  border-radius: 5px;
+}
