@@ -1,185 +1,206 @@
 html, body {
-    height: 100%;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    font-family: Arial, sans-serif;
-    background-color: #f8f9fa; /* Couleur de fond de la page */
-  }
-  
-  .navbar {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    background-color: #343a40;
-    color: white;
-    padding: 0px 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ombre pour la navbar */
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
-  }
-  
-  .app-icon {
-    display: flex;
-    align-items: center;
-    background-color: white;
-    color: #343a40;
-    border-radius: 50%;
-    padding: 5px;
-    margin-right: 10px;
-  }
-  
-  .app-icon i {
-    font-size: 1.5em;
-  }
-  
-  .navbar h1 {
-    margin: 0;
-    font-size: 1.5em;
-    display: flex;
-    align-items: center;
-  }
-  
-  .hamburger {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 1.5em;
-    cursor: pointer;
-    margin-right: 10px;
-  }
-  
-  .navbar nav ul {
-    list-style-type: none;
-    display: flex;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .navbar nav li {
-    margin-left: 20px;
-  }
-  
-  .navbar nav a {
-    text-decoration: none;
-    color: white;
-    transition: color 0.3s; /* Transition pour l'effet de survol */
-  }
-  
-  .navbar nav a:hover {
-    color: #17a2b8; /* Couleur lors du survol */
-  }
-  
-  
-  
-  .layout-container {
-    display: flex;
-    flex: 1;
-    margin-top: 70px; /* Ajuste la marge pour tenir compte de la hauteur de la navbar */
-    transition: margin-left 0.3s; /* Transition pour l'animation de la sidebar */
-  }
-  
-  .layout-container.sidebar-open .sidebar {
-    margin-left: 0; /* Affiche la sidebar */
-  }
-  
-  .sidebar {
-    width: 30%; /* Ajuste la largeur de ta sidebar */
-    background-color: #ffffff; /* Couleur de fond de la sidebar */
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    box-shadow: 0 2px 10px rgb(0, 0, 0); /* Ombre pour la sidebar */
-    border-radius: 10px; /* Coins arrondis pour la sidebar */
-    min-height: 540px; /* Ajuste la hauteur pour couvrir toute la page */
-    /* position: fixed; */
-    top: 70px; /* Ajuste la position pour être en dessous de la navbar */
-    left: 50px; /* Cache la sidebar par défaut */
-    /* height: calc(100% - 80px); Ajuste la hauteur pour tenir compte de la navbar */
-    transition: left 0.3s; /* Transition pour l'animation de la sidebar */
-    z-index: 900; /* Assure que la sidebar soit sous la navbar */
-  }
-  
-  .sidebar.sidebar-open {
-    left: 10px; /* Affiche la sidebar avec un espace */
-  }
-  
-  .sidebar h2 {
-    margin-top: 0;
-    font-size: 1.2em;
-    color: #343a40; /* Couleur du texte */
-  }
-  
-  .option-frame {
-    border: 1px solid #ddd; /* Cadre autour des options */
-    padding: 10px;
-    margin-bottom: 15px; /* Espace entre les cadres des options */
-    border-radius: 5px; /* Coins arrondis */
-    background-color: #f8f9fa; /* Couleur de fond des options */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Légère ombre pour les options */
-    transition: background-color 0.3s; /* Transition pour l'effet de survol */
-  }
-  
-  .option-frame a {
-    text-decoration: none;
-    color: #007bff;
-    font-size: 1em;
-    display: flex;
-    align-items: center; /* Aligne les icônes et le texte */
-  }
-  
-  .option-frame a i {
-    margin-right: 10px; /* Espace entre l'icône et le texte */
-  }
-  
-  .option-frame:hover {
-    background-color: #e9ecef; /* Couleur de fond lors du survol */
-  }
-  
-  .logout {
-    margin-top: auto;
-  }
-  
-  .logout-button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    width: 100%;
-    text-align: left;
-    border-radius: 5px; /* Coins arrondis pour le bouton */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ombre pour le bouton */
-    transition: background-color 0.3s; /* Transition pour l'effet de survol */
-    display: flex;
-    align-items: center; /* Aligne les icônes et le texte */
-  }
-  
-  .logout-button i {
-    margin-right: 10px; /* Espace entre l'icône et le texte */
-  }
-  
-  .logout-button:hover {
-    background-color: #0056b3;
-  }
-  
-  .content {
-    flex-grow: 1;
-    width: calc(70% - 10px);
-    margin-left: 30%; /* Déplace le contenu à droite de la sidebar avec un espace supplémentaire */
-    padding: 20px;
-    background-color: #ffffff; /* Couleur de fond de la zone de contenu */
-    box-shadow: 0 2px 10px rgb(0, 0, 0); /* Ombre pour la zone de contenu */
-    border-radius: 10px; /* Coins arrondis pour le contenu */
-    transition: width 0.3s, margin-left 0.3s; /* Transition pour la rétractation de la sidebar */
-    /* height: calc(100% - 80px); Assure que le contenu a la même hauteur que la sidebar */
-  }
-  
-  .content.content-full {
-    width: calc(100% - 20px); /* Le contenu couvre toute la page lorsque la sidebar est rétractée avec un espace supplémentaire */
-    margin-left: 10px; /* Retire la marge gauche */
-  }
-  
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa; /* Couleur de fond de la page */
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #343a40;
+  color: white;
+  padding: 0px 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ombre pour la navbar */
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+}
+
+.app-icon {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  color: #343a40;
+  border-radius: 50%;
+  padding: 5px;
+  margin-right: 10px;
+}
+
+.app-icon i {
+  font-size: 1.5em;
+}
+
+.navbar h1 {
+  margin: 0;
+  font-size: 1.5em;
+  display: flex;
+  align-items: center;
+}
+
+.hamburger {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5em;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.navbar nav ul {
+  list-style-type: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar nav li {
+  margin-left: 20px;
+}
+
+.navbar nav a {
+  text-decoration: none;
+  color: white;
+  transition: color 0.3s; /* Transition pour l'effet de survol */
+}
+
+.navbar nav a:hover {
+  color: #17a2b8; /* Couleur lors du survol */
+}
+
+.layout-container {
+  display: flex;
+  flex: 1;
+  margin-top: 70px; /* Ajuste la marge pour tenir compte de la hauteur de la navbar */
+  transition: margin-left 0.3s; /* Transition pour l'animation de la sidebar */
+}
+
+.layout-container.sidebar-open .sidebar {
+  margin-left: 0; /* Affiche la sidebar */
+}
+
+.sidebar {
+  width: 30%; /* Ajuste la largeur de ta sidebar */
+  background-color: #ffffff; /* Couleur de fond de la sidebar */
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 2px 10px rgb(0, 0, 0); /* Ombre pour la sidebar */
+  border-radius: 10px; /* Coins arrondis pour la sidebar */
+  min-height: 540px; /* Ajuste la hauteur pour couvrir toute la page */
+  /* position: fixed; */
+  top: 70px; /* Ajuste la position pour être en dessous de la navbar */
+  left: 50px; /* Cache la sidebar par défaut */
+  /* height: calc(100% - 80px); Ajuste la hauteur pour tenir compte de la navbar */
+  transition: left 0.3s; /* Transition pour l'animation de la sidebar */
+  z-index: 900; /* Assure que la sidebar soit sous la navbar */
+}
+
+.sidebar.sidebar-open {
+  left: 10px; /* Affiche la sidebar avec un espace */
+}
+
+.sidebar h2 {
+  margin-top: 0;
+  font-size: 1.2em;
+  color: #343a40; /* Couleur du texte */
+}
+
+.option-frame {
+  border: 1px solid #ddd; /* Cadre autour des options */
+  padding: 10px;
+  margin-bottom: 15px; /* Espace entre les cadres des options */
+  border-radius: 5px; /* Coins arrondis */
+  background-color: #f8f9fa; /* Couleur de fond des options */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Légère ombre pour les options */
+  transition: background-color 0.3s; /* Transition pour l'effet de survol */
+}
+
+.option-frame a {
+  text-decoration: none;
+  color: #007bff;
+  font-size: 1em;
+  display: flex;
+  align-items: center; /* Aligne les icônes et le texte */
+}
+
+.option-frame a i {
+  margin-right: 10px; /* Espace entre l'icône et le texte */
+}
+
+.option-frame:hover {
+  background-color: #e9ecef; /* Couleur de fond lors du survol */
+}
+
+.logout {
+  margin-top: auto;
+}
+
+.logout-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  border-radius: 5px; /* Coins arrondis pour le bouton */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ombre pour le bouton */
+  transition: background-color 0.3s; /* Transition pour l'effet de survol */
+  display: flex;
+  align-items: center; /* Aligne les icônes et le texte */
+}
+
+.logout-button i {
+  margin-right: 10px; /* Espace entre l'icône et le texte */
+}
+
+.logout-button:hover {
+  background-color: #0056b3;
+}
+
+.content {
+  flex-grow: 1;
+  width: calc(70% - 10px);
+  margin-left: 30%; /* Déplace le contenu à droite de la sidebar avec un espace supplémentaire */
+  padding: 20px;
+  background-color: #ffffff; /* Couleur de fond de la zone de contenu */
+  box-shadow: 0 2px 10px rgb(0, 0, 0); /* Ombre pour la zone de contenu */
+  border-radius: 10px; /* Coins arrondis pour le contenu */
+  transition: width 0.3s, margin-left 0.3s; /* Transition pour la rétractation de la sidebar */
+  /* height: calc(100% - 80px); Assure que le contenu a la même hauteur que la sidebar */
+}
+
+.content.content-full {
+  width: calc(100% - 20px); /* Le contenu couvre toute la page lorsque la sidebar est rétractée avec un espace supplémentaire */
+  margin-left: 10px; /* Retire la marge gauche */
+}
+
+/* Ajouts pour le cadre autour du nom et du rôle de l'utilisateur */
+.user-frame {
+  border: 1px solid #ddd; /* Cadre autour du nom et du rôle */
+  padding: 10px;
+  border-radius: 5px; /* Coins arrondis */
+  background-color: #f8f9fa; /* Couleur de fond */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Légère ombre */
+  display: flex;
+  align-items: center;
+}
+
+.user-name-role {
+  display: flex;
+  gap: 5px; /* Espace entre le nom, "est" et le rôle */
+}
+
+.user-name, .user-role {
+  font-weight: bold;
+  color: #007bff; /* Couleur du texte */
+}
+.est{
+  color: black;
+}

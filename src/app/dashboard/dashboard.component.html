@@ -9,8 +9,9 @@
   
     <div class="user-info">
       <div class="user-frame">
-        <span class="user-name">{{ username }}</span>
-        <span class="user-role">{{ userRole }}</span>  <!-- Ajoutez ce log pour vérifier le rôle affiché -->
+        <div class="user-name-role">
+          <span class="user-name">{{ username }}</span><span class="est">est </span> <span class="user-role">{{ userRole }}</span>
+        </div>
       </div>
     </div>
   </div>
@@ -18,7 +19,7 @@
   <div class="layout-container" [class.sidebar-open]="isSidebarOpen">
     <div class="sidebar" [class.sidebar-open]="isSidebarOpen">
       <h2>Options</h2>
-      <div class="option-frame">
+      <div class="option-frame" >
         <a routerLink="/dashboard/accueil" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="nav-item">
           <i class="fas fa-home"></i> Accueil
         </a>
@@ -55,9 +56,10 @@
       </div>
       <div class="logout">
         <button class="logout-button" (click)="logout()"><i class="fas fa-sign-out-alt"></i> Se déconnecter</button>
+      </div>
     </div>
-</div>
-<div class="content" [class.content-full]="!isSidebarOpen">
-    <router-outlet></router-outlet>
-</div>
-</div>
+    <div class="content" [class.content-full]="!isSidebarOpen">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+  
